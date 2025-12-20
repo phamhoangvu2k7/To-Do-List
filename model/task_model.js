@@ -6,4 +6,16 @@ const getAllTasks = async () => {
   return result.rows; // Trả về danh sách các dòng dữ liệu
 };
 
-module.exports = { getAllTasks };
+const createTask = async (data) => {
+    const query = `
+        INSERT INTO tasks (title, description, is_important) 
+        VALUES ($1, $2, $3)
+        RETURNING *
+    `;
+    // $1, $2, $3 sẽ lấy giá trị từ mảng values bên dưới
+    const values = [data.title, data.description, data.is_important];
+    
+    return await pool.query(query, values);
+};
+
+module.exports = { getAllTasks, createTask };

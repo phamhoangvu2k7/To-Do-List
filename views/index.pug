@@ -1,140 +1,140 @@
 doctype html
 html
-  head
-    title My Tasks
-    // 1. Nhúng Font chữ đẹp (Poppins) từ Google
-    link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet")
-    // 2. Bootstrap 5
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
-    // 3. Icons
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet")
+    head
+        title My Tasks
+        // 1. Nhúng Font chữ đẹp (Poppins) từ Google
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet")
+        // 2. Bootstrap 5
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+        // 3. Icons
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet")
     
-    // 4. CSS Tùy chỉnh (Để phá bỏ giao diện mặc định)
-    style.
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu tím mộng mơ */
-        min-height: 100vh;
-        padding-bottom: 50px;
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 24px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        border: none;
-      }
-      .task-item {
-        background: #fff;
-        border-radius: 16px;
-        margin-bottom: 12px;
-        transition: all 0.3s ease;
-        border: 1px solid #f0f0f0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-      }
-      .task-item:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-        border-color: #e0e0e0;
-      }
-      .btn-custom-add {
-        background: linear-gradient(45deg, #ff6b6b, #f06595);
-        border: none;
-        border-radius: 50px;
-        padding: 10px 24px;
-        font-weight: 600;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        transition: transform 0.2s;
-      }
-      .btn-custom-add:hover {
-        transform: scale(1.05);
-        background: linear-gradient(45deg, #ff8787, #f783ac);
-      }
-      /* Custom Checkbox hình tròn */
-      .custom-checkbox {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        cursor: pointer;
-        border: 2px solid #ddd;
-        appearance: none;
-        position: relative;
-        transition: all 0.2s;
-      }
-      .custom-checkbox:checked {
-        background-color: #20c997;
-        border-color: #20c997;
-      }
-      .custom-checkbox:checked::after {
-        content: '✔';
-        color: white;
-        font-size: 14px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      /* Badge trạng thái mềm mại hơn */
-      .badge-soft-danger {
-        background-color: #ffe5e5;
-        color: #e03131;
-        padding: 6px 12px;
-        border-radius: 20px;
-      }
+        // 4. CSS Tùy chỉnh
+        style.
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu tím mộng mơ */
+                min-height: 100vh;
+                padding-bottom: 50px;
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 24px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border: none;
+            }
+            .task-item {
+                background: #fff;
+                border-radius: 16px;
+                margin-bottom: 12px;
+                transition: all 0.3s ease;
+                border: 1px solid #f0f0f0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            }
+            .task-item:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+                border-color: #e0e0e0;
+            }
+            .btn-custom-add {
+                background: linear-gradient(45deg, #ff6b6b, #f06595);
+                border: none;
+                border-radius: 50px;
+                padding: 10px 24px;
+                font-weight: 600;
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+                transition: transform 0.2s;
+            }
+            .btn-custom-add:hover {
+                transform: scale(1.05);
+                background: linear-gradient(45deg, #ff8787, #f783ac);
+            }
+            /* Custom Checkbox hình tròn */
+            .custom-checkbox {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 2px solid #ddd;
+                appearance: none;
+                position: relative;
+                transition: all 0.2s;
+            }
+            .custom-checkbox:checked {
+                background-color: #20c997;
+                border-color: #20c997;
+            }
+            .custom-checkbox:checked::after {
+                content: '✔';
+                color: white;
+                font-size: 14px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            /* Badge trạng thái mềm mại hơn */
+            .badge-soft-danger {
+                background-color: #ffe5e5;
+                color: #e03131;
+                padding: 6px 12px;
+                border-radius: 20px;
+            }
 
-  body
-    div.container.py-5
-      div.row.justify-content-center
-        div.col-md-8.col-lg-6
+    body
+        div.container.py-5
+            div.row.justify-content-center
+                div.col-md-8.col-lg-6
           
-          // Header chào mừng
-          div.text-center.mb-5.text-white
-            h2.fw-bold.mb-1 Xin chào, Bạn! 👋
-            p.opacity-75 Hôm nay bạn có dự định gì không?
+                    // Header chào mừng
+                    div.text-center.mb-5.text-white
+                        h2.fw-bold.mb-1 Xin chào, Bạn! 👋
+                        p.opacity-75 Hôm nay bạn có dự định gì không?
 
-          div.card.glass-card.p-4
-            // Dòng tiêu đề + Nút thêm mới
-            div.d-flex.justify-content-between.align-items-center.mb-4
-              h4.fw-bold.text-dark.m-0 Nhiệm vụ
-              a.btn.btn-custom-add.text-white(href="/create") 
-                i.bi.bi-plus-lg.me-2 
-                | Mới
+                    div.card.glass-card.p-4
+                        // Dòng tiêu đề + Nút thêm mới
+                        div.d-flex.justify-content-between.align-items-center.mb-4
+                            h4.fw-bold.text-dark.m-0 Nhiệm vụ
+                            a.btn.btn-custom-add.text-white(href="/create") 
+                                i.bi.bi-plus-lg.me-2 
+                                | Thêm mới
 
-            // Danh sách công việc
-            if tasks.length == 0
-              div.text-center.py-5
-                i.bi.bi-clipboard-x.display-1.text-muted.opacity-25
-                p.text-muted.mt-3 Chưa có công việc nào. Thư giãn đi! ☕
-            else
-              div.d-flex.flex-column
-                each task in tasks
-                  // Mỗi task là một khối riêng biệt (task-item)
-                  div.task-item.p-3.d-flex.justify-content-between.align-items-center
-                    
-                    // Bên trái: Checkbox + Nội dung
-                    div.d-flex.align-items-center.gap-3
-                      // Checkbox giả (chưa có logic backend)
-                      input.custom-checkbox(type="checkbox" checked=(task.status === 'completed'))
-                      
-                      div
-                        if task.status == 'completed'
-                          h6.mb-0.text-decoration-line-through.text-muted #{task.title}
+                        // Danh sách công việc
+                        if tasks.length == 0
+                            div.text-center.py-5
+                                i.bi.bi-clipboard-x.display-1.text-muted.opacity-25
+                                p.text-muted.mt-3 Chưa có công việc nào. Thư giãn đi! ☕
                         else
-                          h6.mb-0.fw-bold.text-dark #{task.title}
-                          
-                        // Meta data nhỏ bên dưới
-                        div.d-flex.align-items-center.mt-1
-                          if task.is_important
-                            span.badge-soft-danger.me-2.small
-                              i.bi.bi-star-fill.me-1
-                              | Quan trọng
-                          span.small.text-muted(style="font-size: 0.8rem") #{task.created_at.toLocaleString('vi-VN', {hour: '2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'})}
-
-                    // Bên phải: Các nút hành động
-                    div.d-flex.gap-2
-                      // Nút Edit (tròn, icon only)
-                      a.btn.btn-light.rounded-circle.text-primary.shadow-sm(href=`/edit/${task.id}` style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
-                        i.bi.bi-pencil-fill(style="font-size: 0.9rem")
+                            div.d-flex.flex-column
+                                each task in tasks
+                                    // Mỗi task là một khối riêng biệt (task-item)
+                                    div.task-item.p-3.d-flex.justify-content-between.align-items-center
+                    
+                                        // Bên trái: Checkbox + Nội dung
+                                        div.d-flex.align-items-center.gap-3
+                                            // Checkbox giả
+                                            input.custom-checkbox(type="checkbox" checked=(task.status === 'completed'))
                       
-                      // Nút Delete (tròn, icon only)
-                      a.btn.btn-light.rounded-circle.text-danger.shadow-sm(href=`/delete/${task.id}` onclick="return confirm('Xóa nhé?')" style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
-                        i.bi.bi-trash-fill(style="font-size: 0.9rem")
+                                            div
+                                                if task.status == 'completed'
+                                                    h6.mb-0.text-decoration-line-through.text-muted #{task.title}
+                                                else
+                                                    h6.mb-0.fw-bold.text-dark #{task.title}
+                                                
+                                                // Meta data nhỏ bên dưới
+                                                div.d-flex.align-items-center.mt-1
+                                                    if task.is_important
+                                                        span.badge-soft-danger.me-2.small
+                                                            i.bi.bi-star-fill.me-1
+                                                            | Quan trọng
+                                                    span.small.text-muted(style="font-size: 0.8rem") #{task.created_at.toLocaleString('vi-VN', {hour: '2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'})}
+
+                                        // Bên phải: Các nút hành động
+                                        div.d-flex.gap-2
+                                            // Nút Edit
+                                            a.btn.btn-light.rounded-circle.text-primary.shadow-sm(href=`/edit/${task.id}` style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
+                                                i.bi.bi-pencil-fill(style="font-size: 0.9rem")
+                                            
+                                            // Nút Delete
+                                            a.btn.btn-light.rounded-circle.text-danger.shadow-sm(href=`/delete/${task.id}` onclick="return confirm('Xóa nhé?')" style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
+                                                i.bi.bi-trash-fill(style="font-size: 0.9rem")

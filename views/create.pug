@@ -1,0 +1,73 @@
+doctype html
+html
+    head
+        title Thêm việc mới
+        // 1. Fonts & CSS
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet")
+
+        // 2. CSS Tùy chỉnh (Căn giữa màn hình)
+        style.
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                /* 3 dòng dưới giúp căn giữa tuyệt đối */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 24px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border: none;
+                width: 100%;
+                max-width: 500px; /* Giới hạn chiều rộng cho đẹp */
+            }
+            .form-control:focus {
+                border-color: #764ba2;
+                box-shadow: 0 0 0 0.25rem rgba(118, 75, 162, 0.25);
+            }
+            .btn-submit {
+                background: linear-gradient(45deg, #ff6b6b, #f06595);
+                border: none;
+                padding: 12px;
+                font-weight: 600;
+                border-radius: 12px;
+                transition: transform 0.2s;
+            }
+            .btn-submit:hover {
+                transform: scale(1.02);
+                background: linear-gradient(45deg, #ff8787, #f783ac);
+            }
+
+    body
+        div.container.d-flex.justify-content-center
+            div.glass-card.p-4.p-md-5
+                // Tiêu đề
+                h3.fw-bold.text-center.mb-4.text-dark ✨ Thêm nhiệm vụ
+                
+                // Form gửi dữ liệu
+                form(action="/create" method="POST")
+                    
+                    // 1. Nhập tiêu đề
+                    div.mb-3
+                        label.form-label.fw-bold(for="title") Tên công việc
+                        input#title.form-control.form-control-lg(type="text" name="title" placeholder="Ví dụ: Học SQL..." required)
+                    
+                    // 2. Nhập mô tả
+                    div.mb-3
+                        label.form-label.fw-bold(for="description") Chi tiết
+                        textarea#description.form-control(name="description" rows="3" placeholder="Ghi chú thêm (nếu có)...")
+
+                    // 3. Checkbox quan trọng
+                    div.mb-4.form-check
+                        input#is_important.form-check-input(type="checkbox" name="is_important" style="width: 20px; height: 20px; margin-top: 2px")
+                        label.form-check-label.ms-2.fw-bold.text-danger(for="is_important") Đánh dấu là Quan trọng 🔥
+
+                    // 4. Các nút bấm
+                    div.d-grid.gap-2
+                        button.btn.btn-submit.text-white.shadow(type="submit") Lưu lại ngay
+                        a.btn.btn-light.text-muted(href="/") Quay lại

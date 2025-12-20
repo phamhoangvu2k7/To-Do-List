@@ -49,30 +49,6 @@ html
                 transform: scale(1.05);
                 background: linear-gradient(45deg, #ff8787, #f783ac);
             }
-            /* Custom Checkbox hình tròn */
-            .custom-checkbox {
-                width: 24px;
-                height: 24px;
-                border-radius: 50%;
-                cursor: pointer;
-                border: 2px solid #ddd;
-                appearance: none;
-                position: relative;
-                transition: all 0.2s;
-            }
-            .custom-checkbox:checked {
-                background-color: #20c997;
-                border-color: #20c997;
-            }
-            .custom-checkbox:checked::after {
-                content: '✔';
-                color: white;
-                font-size: 14px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
             /* Badge trạng thái mềm mại hơn */
             .badge-soft-danger {
                 background-color: #ffe5e5;
@@ -109,17 +85,11 @@ html
                                 each task in tasks
                                     // Mỗi task là một khối riêng biệt (task-item)
                                     div.task-item.p-3.d-flex.justify-content-between.align-items-center
-                    
-                                        // Bên trái: Checkbox + Nội dung
+                                        
+                                        // Bên trái: Nội dung
                                         div.d-flex.align-items-center.gap-3
-                                            // Checkbox giả
-                                            input.custom-checkbox(type="checkbox" checked=(task.status === 'completed'))
-                      
                                             div
-                                                if task.status == 'completed'
-                                                    h6.mb-0.text-decoration-line-through.text-muted #{task.title}
-                                                else
-                                                    h6.mb-0.fw-bold.text-dark #{task.title}
+                                                h6.mb-0.fw-bold.text-dark #{task.title}
                                                 
                                                 // Meta data nhỏ bên dưới
                                                 div.d-flex.align-items-center.mt-1
@@ -129,12 +99,17 @@ html
                                                             | Quan trọng
                                                     span.small.text-muted(style="font-size: 0.8rem") #{task.created_at.toLocaleString('vi-VN', {hour: '2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'})}
 
-                                        // Bên phải: Các nút hành động
+                                        // Bên phải: Các nút hành động (Detail - Edit - Delete)
                                         div.d-flex.gap-2
-                                            // Nút Edit
+                                            
+                                            // 1. Nút Detail (Mới thêm - Màu xanh ngọc)
+                                            a.btn.btn-light.rounded-circle.text-info.shadow-sm(href=`/detail/${task.id}` style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
+                                                i.bi.bi-eye-fill(style="font-size: 0.9rem")
+
+                                            // 2. Nút Edit
                                             a.btn.btn-light.rounded-circle.text-primary.shadow-sm(href=`/edit/${task.id}` style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
                                                 i.bi.bi-pencil-fill(style="font-size: 0.9rem")
                                             
-                                            // Nút Delete
-                                            a.btn.btn-light.rounded-circle.text-danger.shadow-sm(href=`/delete/${task.id}` onclick="return confirm('Xóa nhé?')" style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
+                                            // 3. Nút Delete
+                                            a.btn.btn-light.rounded-circle.text-danger.shadow-sm(href=`/delete/${task.id}` onclick="return confirm('Bạn đã làm xong việc này chưa?')" style="width: 35px; height: 35px; display:flex; align-items:center; justify-content:center;")
                                                 i.bi.bi-trash-fill(style="font-size: 0.9rem")

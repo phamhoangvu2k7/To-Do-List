@@ -1,7 +1,7 @@
 const pool = require("../database");
 
 const getAllTasks = async () => {
-  const query = 'SELECT * FROM tasks ORDER BY created_at DESC';
+  const query = "SELECT * FROM tasks WHERE status = 'pending' ORDER BY created_at DESC";
   const result = await pool.query(query);
   return result.rows; // Trả về danh sách các dòng dữ liệu
 };
@@ -44,4 +44,15 @@ const getTaskById = async (id) => {
     return result.rows[0]; // Chỉ lấy dòng đầu tiên (vì id là duy nhất)
 };
 
-module.exports = { getAllTasks, createTask, getTaskById, updateTask };
+const deleteTask = async (id) => {
+    const query = 'DELETE FROM tasks WHERE id = $1';
+    await pool.query(query, [id]);
+};
+
+module.exports = { 
+    getAllTasks, 
+    createTask, 
+    getTaskById, 
+    updateTask, 
+    deleteTask 
+};

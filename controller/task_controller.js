@@ -51,3 +51,8 @@ module.exports.editPatch = async (req, res) => {
     await Task.updateTask(req.params.taskId, req.body);
     res.redirect("/");
 }
+
+module.exports.delete = async (req, res) => {
+    await Task.deleteTask(req.params.taskId);
+    res.redirect(req.get("referer"));
+}

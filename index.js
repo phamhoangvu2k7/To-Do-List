@@ -5,7 +5,7 @@ const path = require('path');
 const taskRoutes = require("./routes/task_route"); // Gọi file Route vào
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // Cấu hình
 app.set('view engine', 'pug');

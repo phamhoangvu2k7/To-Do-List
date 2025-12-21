@@ -1,11 +1,13 @@
-const {Pool} = require('pg');
+const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+    // Nếu có biến môi trường DATABASE_URL (trên Render/Neon) thì dùng
+    connectionString: process.env.DATABASE_URL,
+
+    // Cấu hình SSL: Bắt buộc phải có khi kết nối với Neon
+    // Nếu đang chạy trên Cloud (có DATABASE_URL) thì bật SSL, ngược lại (localhost) thì tắt
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
 module.exports = pool;

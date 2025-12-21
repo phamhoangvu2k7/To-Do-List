@@ -39,3 +39,15 @@ module.exports.detail = async (req, res) => {
         task: task
     })
 }
+
+module.exports.edit = async (req, res) => {
+    const task = await Task.getTaskById(req.params.taskId, req.params.status);
+    res.render("edit", {
+        task: task
+    });
+}
+
+module.exports.editPatch = async (req, res) => {
+    await Task.updateTask(req.params.taskId, req.body);
+    res.redirect("/");
+}

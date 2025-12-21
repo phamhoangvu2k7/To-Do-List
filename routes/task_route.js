@@ -10,4 +10,8 @@ router.post("/create", controller.createPost);
 
 router.get("/detail/:taskId", controller.detail);
 
+router.get("/edit/:taskId", controller.edit);
+
+router.post("/edit/:taskId", controller.editPatch);
+
 module.exports = router;

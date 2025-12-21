@@ -1,0 +1,73 @@
+doctype html
+html
+    head
+        title Chỉnh sửa nhiệm vụ
+        // 1. Fonts & CSS
+        link(href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet")
+
+        // 2. CSS Tùy chỉnh (Giống trang Create)
+        style.
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 24px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border: none;
+                width: 100%;
+                max-width: 500px;
+            }
+            .form-control:focus {
+                border-color: #764ba2;
+                box-shadow: 0 0 0 0.25rem rgba(118, 75, 162, 0.25);
+            }
+            .btn-submit {
+                background: linear-gradient(45deg, #667eea, #764ba2); /* Đổi màu xanh tím cho khác nút tạo mới */
+                border: none;
+                padding: 12px;
+                font-weight: 600;
+                border-radius: 12px;
+                transition: transform 0.2s;
+            }
+            .btn-submit:hover {
+                transform: scale(1.02);
+                background: linear-gradient(45deg, #764ba2, #667eea);
+            }
+
+    body
+        div.container.d-flex.justify-content-center
+            div.glass-card.p-4.p-md-5
+                // Tiêu đề
+                h3.fw-bold.text-center.mb-4.text-dark ✏️ Chỉnh sửa nhiệm vụ
+                
+                // Form gửi dữ liệu đến route POST /edit/:id
+                // CHÚ Ý: Action phải kèm theo ID của task
+                form(action=`/edit/${task.id}` method="POST")
+                    
+                    // 1. Nhập tiêu đề (Hiện sẵn dữ liệu cũ bằng value)
+                    div.mb-3
+                        label.form-label.fw-bold(for="title") Tên công việc
+                        input#title.form-control.form-control-lg(type="text" name="title" value=task.title required)
+                    
+                    // 2. Nhập mô tả (Hiện sẵn dữ liệu cũ trong thẻ)
+                    div.mb-3
+                        label.form-label.fw-bold(for="description") Chi tiết
+                        textarea#description.form-control(name="description" rows="3") #{task.description}
+
+                    // 3. Checkbox quan trọng (Check sẵn nếu data là true)
+                    div.mb-4.form-check
+                        input#is_important.form-check-input(type="checkbox" name="is_important" style="width: 20px; height: 20px; margin-top: 2px" checked=(task.is_important))
+                        label.form-check-label.ms-2.fw-bold.text-danger(for="is_important") Đánh dấu là Quan trọng 🔥
+
+                    // 4. Các nút bấm
+                    div.d-grid.gap-2
+                        button.btn.btn-submit.text-white.shadow(type="submit") Cập nhật ngay
+                        a.btn.btn-light.text-muted(href="/") Hủy bỏ

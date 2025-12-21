@@ -8,4 +8,6 @@ router.get("/create", controller.create);
 
 router.post("/create", controller.createPost);
 
+router.get("/detail/:taskId", controller.detail);
+
 module.exports = router;

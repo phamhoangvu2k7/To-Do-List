@@ -32,3 +32,10 @@ module.exports.createPost = async (req, res) => {
         res.send("Lỗi không lưu được!");
     }
 }
+
+module.exports.detail = async (req, res) => {
+    const task = await Task.getTaskById(req.params.taskId, req.params.status);
+    res.render("detail", {
+        task: task
+    })
+}

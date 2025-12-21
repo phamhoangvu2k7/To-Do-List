@@ -18,4 +18,10 @@ const createTask = async (data) => {
     return await pool.query(query, values);
 };
 
-module.exports = { getAllTasks, createTask };
+const getTaskById = async (id) => {
+    const query = "SELECT * FROM tasks WHERE id = $1 AND status = 'pending'";
+    const result = await pool.query(query, [id]);
+    return result.rows[0]; // Chỉ lấy dòng đầu tiên (vì id là duy nhất)
+};
+
+module.exports = { getAllTasks, createTask, getTaskById };
